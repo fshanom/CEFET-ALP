@@ -4,4 +4,4 @@ const nomesInvertidos = nomes.map((nome) => {return nome.split('').reverse().joi
 console.log(nomesInvertidos);
 
 const maiorNome = nomes.reduce((nome1,nome2) => nome1.length > nome2.length ? nome1 : nome2)
-console.log(maiorNome);
+console.log('Maior nome: ' + maiorNome);

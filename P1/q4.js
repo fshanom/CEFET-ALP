@@ -14,22 +14,20 @@ const medidasAp = [
     { label: "banheiro" , largura: 1.5, comprimento:2 }
 ];
 
+const medidasQuadradasAp = medidasAp.map((ap) => 
+    Object.assign({ 
+        label:ap.label,
+        medidaQuadrada: ap.largura*ap.comprimento
+    }), {})
+
 // a) Gerar um objeto com com o label e a metragem em m2 do maior comodo da casa
-const maiorComodo = medidasAp.reduce((c1, c2) => ((c1.largura*c1.comprimento)>(c2.largura*c2.comprimento)) ? c1 : c2);
+const maiorComodo = medidasQuadradasAp.reduce((c1, c2) => (c1.medidaQuadrada>c2.medidaQuadrada) ? c1 : c2);
 console.log(maiorComodo)
 
 // b) Determinar a metragem quadrada total do apartamento
-const medidaTotalAp = medidasAp.map((ap) => ap.largura*ap.comprimento).reduce((a,b) => a+b);
-console.log(medidaTotalAp)
+const medidaTotalAp = medidasQuadradasAp.map((ap) => ap.medidaQuadrada).reduce((a,b) => a+b);
+console.log('Medida total do apartamento: ' + medidaTotalAp)
 
 // c) Determinar a metragem quadrada total dos quartos
-const medidaTotalQuartos = medidasAp.filter((ap) => ap.label.includes('quarto')).map((ap) => ap.largura*ap.comprimento).reduce((a,b) => a+b);
-/*
-const medidaTotalQuartos = medidasAp.filter((ap) => ap.label.includes('quarto'))
-    .reduce((a,b) => {
-        var metragemA = a.comprimento*a.largura;
-        var metragemB = b.comprimento*b.largura;
-        return metragemA+metragemB;
-    });
-*/
-console.log(medidaTotalQuartos)
+const medidaTotalQuartos = medidasQuadradasAp.filter((ap) => ap.label.includes('quarto')).map((ap) => ap.medidaQuadrada).reduce((a,b) => a+b);
+console.log('Medida quadrada dos quartos: ' + medidaTotalQuartos)
